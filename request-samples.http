@@ -4,7 +4,18 @@ content-type: application/json
 
 {
   "name": "Test Alarm",
-  "severity": "high"
+  "severity": "high",
+  "triggeredAt": "2021-01-01T00:00:00.000Z",
+  "items": [
+    {
+      "name": "Item 1",
+      "type": "TYPE_1"
+    },
+    {
+      "name": "Item 2",
+      "type": "TYPE_2"
+    }
+  ]
 }
 
 ###
