@@ -20,3 +20,6 @@ content-type: application/json
 
 ###
 GET http://localhost:3000/alarms HTTP/1.1
+
+###
+PATCH  http://localhost:3000/alarms/7c93c9c9-d2a5-4546-8c28-a163ddeb6108/acknowledge
