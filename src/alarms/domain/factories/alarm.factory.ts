@@ -1,8 +1,9 @@
 import { Injectable } from "@nestjs/common";
 import { randomUUID } from "crypto";
 import { Alarm } from "../alarm";
-import { AlarmSeverity } from "../value-objects/alarm-severity";
 import { AlarmItem } from "../alarm-item";
+import { AlarmCreatedEvent } from "../events/alarm-created.event";
+import { AlarmSeverity } from "../value-objects/alarm-severity";
 
 @Injectable()
 export class AlarmFactory {
@@ -28,6 +29,11 @@ export class AlarmFactory {
           item.type,
         )
       ));
+
+    alarm.apply(
+      new AlarmCreatedEvent(alarm),
+      { skipHandler: true },
+    );
 
     return alarm;
   }

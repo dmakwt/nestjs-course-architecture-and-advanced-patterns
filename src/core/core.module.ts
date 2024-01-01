@@ -1,9 +1,18 @@
 import { DynamicModule, Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ApplicationBootstrapOptions } from '../common/interfaces/application-bootstrap-options.interface';
-import { MongooseModule } from '@nestjs/mongoose';
+import { EVENT_STORE_CONNECTION } from './core.constants';
 
-@Module({})
+@Module({
+  imports: [
+    // For the event store
+    MongooseModule.forRoot('mongodb://localhost:27019/vf-event-store', {
+      connectionName: EVENT_STORE_CONNECTION,
+      directConnection: true, // connect to local replica set
+    }),
+  ]
+})
 export class CoreModule {
   static forRoot(options: ApplicationBootstrapOptions): DynamicModule {
     let imports: DynamicModule['imports'] = []
