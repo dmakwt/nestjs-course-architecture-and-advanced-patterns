@@ -1,4 +1,4 @@
-import { Prop, Schema, SchemaFactory, raw } from "@nestjs/mongoose";
+import { Prop, Schema, SchemaFactory, raw } from '@nestjs/mongoose';
 
 @Schema()
 export class MaterializedAlarmView {
@@ -18,13 +18,15 @@ export class MaterializedAlarmView {
   isAcknowledged: boolean;
 
   @Prop(
-    raw([{
-      id: String,
-      name: String,
-      type: {
-        type: String,
+    raw([
+      {
+        id: String,
+        name: String,
+        type: {
+          type: String,
+        },
       },
-    }]),
+    ]),
   )
   items: Array<{
     id: string;

@@ -1,4 +1,4 @@
-import { AlarmItemEntity } from "./alarm-item.entity";
+import { AlarmItemEntity } from './alarm-item.entity';
 
 export class AlarmEntity {
   id: string;

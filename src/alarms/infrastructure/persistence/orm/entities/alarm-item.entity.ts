@@ -1,7 +1,7 @@
-import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
-import { AlarmEntity } from "./alarm.entity";
+import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
+import { AlarmEntity } from './alarm.entity';
 
-@Entity("alarm_items")
+@Entity('alarm_items')
 export class AlarmItemEntity {
   @PrimaryColumn()
   id: string;

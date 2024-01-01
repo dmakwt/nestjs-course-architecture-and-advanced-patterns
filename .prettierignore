@@ -1,0 +1,6 @@
+scripts/*
+*.js
+
+dist/
+**/node_modules/*
+.git/

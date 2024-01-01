@@ -6,9 +6,7 @@
  */
 export type SerializedEventPayload<T> = T extends object
   ? {
-      [K in keyof T]: T[K] extends { toJSON(): infer U }
-        ? U
-        : SerializedEventPayload<T[K]>;
+      [K in keyof T]: T[K] extends { toJSON(): infer U } ? U : SerializedEventPayload<T[K]>;
     }
   : T;
 

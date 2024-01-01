@@ -10,11 +10,7 @@ export class NotifyFacilitySupervisorCommandHandler
   private readonly logger: Logger;
 
   async execute(command: NotifyFacilitySupervisorCommand) {
-    this.logger.debug(
-      `Processing "NotifyFacilitySupervisorCommand": ${JSON.stringify(
-        command,
-      )}`,
-    );
+    this.logger.debug(`Processing "NotifyFacilitySupervisorCommand": ${JSON.stringify(command)}`);
 
     // TODO: Send e-mail/text message to facility supervisor
   }

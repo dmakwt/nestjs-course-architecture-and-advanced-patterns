@@ -4,10 +4,7 @@ import { SerializableEvent } from '../../../domain/interfaces/serializable-event
 
 @Injectable()
 export class EventSerializer {
-  serialize<T extends object>(
-    event: T,
-    dispatcher: VersionedAggregateRoot,
-  ): SerializableEvent<T> {
+  serialize<T extends object>(event: T, dispatcher: VersionedAggregateRoot): SerializableEvent<T> {
     const eventType = event.constructor?.name;
     if (!eventType) {
       throw new Error('Incompatible event type');

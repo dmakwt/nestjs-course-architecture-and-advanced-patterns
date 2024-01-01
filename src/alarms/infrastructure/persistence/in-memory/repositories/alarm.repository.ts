@@ -9,10 +9,7 @@ import { AlarmMapper } from '../mappers/alarm.mapper';
 
 @Injectable()
 export class InMemoryAlarmRepository
-  implements
-    CreateAlarmRepository,
-    FindAlarmsRepository,
-    UpsertMaterializedAlarmRepository
+  implements CreateAlarmRepository, FindAlarmsRepository, UpsertMaterializedAlarmRepository
 {
   private readonly alarms = new Map<string, AlarmEntity>();
   private readonly materializedAlarmViews = new Map<string, AlarmReadModel>();
@@ -29,9 +26,7 @@ export class InMemoryAlarmRepository
     return AlarmMapper.toDomain(newEntity);
   }
 
-  async upsert(
-    alarm: Pick<AlarmReadModel, 'id'> & Partial<AlarmReadModel>,
-  ): Promise<void> {
+  async upsert(alarm: Pick<AlarmReadModel, 'id'> & Partial<AlarmReadModel>): Promise<void> {
     if (this.materializedAlarmViews.has(alarm.id)) {
       this.materializedAlarmViews.set(alarm.id, {
         ...this.materializedAlarmViews.get(alarm.id)!,

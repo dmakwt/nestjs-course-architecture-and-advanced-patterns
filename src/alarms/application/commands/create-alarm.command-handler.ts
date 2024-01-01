@@ -4,9 +4,7 @@ import { AlarmFactory } from '../../domain/factories/alarm.factory';
 import { CreateAlarmCommand } from './create-alarm.command';
 
 @CommandHandler(CreateAlarmCommand)
-export class CreateAlarmCommandHandler
-  implements ICommandHandler<CreateAlarmCommand>
-{
+export class CreateAlarmCommandHandler implements ICommandHandler<CreateAlarmCommand> {
   @Inject()
   private readonly logger: Logger;
 
@@ -16,9 +14,7 @@ export class CreateAlarmCommandHandler
   ) {}
 
   async execute(command: CreateAlarmCommand) {
-    this.logger.debug(
-      `Processing "CreateAlarmCommand": ${JSON.stringify(command)}`,
-    );
+    this.logger.debug(`Processing "CreateAlarmCommand": ${JSON.stringify(command)}`);
     const alarm = this.alarmFactory.create(
       command.name,
       command.severity,

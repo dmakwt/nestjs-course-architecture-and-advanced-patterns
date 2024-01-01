@@ -12,10 +12,7 @@ import { EventStore } from '../application/ports/event-store';
 
 @Module({
   imports: [
-    MongooseModule.forFeature(
-      [{ name: Event.name, schema: EventSchema }],
-      EVENT_STORE_CONNECTION,
-    ),
+    MongooseModule.forFeature([{ name: Event.name, schema: EventSchema }], EVENT_STORE_CONNECTION),
   ],
   providers: [
     {

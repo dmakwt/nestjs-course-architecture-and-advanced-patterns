@@ -1,8 +1,4 @@
-import {
-  Injectable,
-  OnApplicationBootstrap,
-  OnApplicationShutdown,
-} from '@nestjs/common';
+import { Injectable, OnApplicationBootstrap, OnApplicationShutdown } from '@nestjs/common';
 import { EventBus } from '@nestjs/cqrs';
 import { InjectModel } from '@nestjs/mongoose';
 import { ChangeStream, ChangeStreamInsertDocument } from 'mongodb';
@@ -12,9 +8,7 @@ import { EventDeserializer } from './deserializers/event.deserializer';
 import { Event, EventDocument } from './schemas/event.schema';
 
 @Injectable()
-export class EventsBridge
-  implements OnApplicationBootstrap, OnApplicationShutdown
-{
+export class EventsBridge implements OnApplicationBootstrap, OnApplicationShutdown {
   private changeStream: ChangeStream;
 
   constructor(

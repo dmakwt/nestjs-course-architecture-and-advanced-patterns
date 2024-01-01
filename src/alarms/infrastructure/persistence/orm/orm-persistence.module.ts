@@ -16,10 +16,7 @@ import {
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([
-      AlarmEntity,
-      AlarmItemEntity,
-    ]),
+    TypeOrmModule.forFeature([AlarmEntity, AlarmItemEntity]),
 
     MongooseModule.forFeature([
       { name: MaterializedAlarmView.name, schema: MaterializedAlarmViewSchema },
@@ -39,10 +36,6 @@ import {
       useClass: OrmUpsertMaterializedAlarmRepository,
     },
   ],
-  exports: [
-    CreateAlarmRepository,
-    FindAlarmsRepository,
-    UpsertMaterializedAlarmRepository,
-  ],
+  exports: [CreateAlarmRepository, FindAlarmsRepository, UpsertMaterializedAlarmRepository],
 })
 export class OrmAlarmPersistenceModule {}

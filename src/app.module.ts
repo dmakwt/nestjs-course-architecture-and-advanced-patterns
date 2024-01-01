@@ -6,10 +6,7 @@ import { ApplicationBootstrapOptions } from './common/interfaces/application-boo
 import { CoreModule } from './core/core.module';
 
 @Module({
-  imports: [
-    CoreModule,
-    CqrsModule.forRoot(),
-  ],
+  imports: [CoreModule, CqrsModule.forRoot()],
 })
 export class AppModule {
   static register(options: ApplicationBootstrapOptions) {
@@ -17,9 +14,7 @@ export class AppModule {
       module: AppModule,
       imports: [
         CoreModule.forRoot(options),
-        AlarmsModule.withInfrastucture(
-          AlarmsInfrastructureModule.use(options.driver),
-        ),
+        AlarmsModule.withInfrastucture(AlarmsInfrastructureModule.use(options.driver)),
       ],
     };
   }

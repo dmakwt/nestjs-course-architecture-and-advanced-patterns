@@ -1,15 +1,6 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { ICommand, Saga, ofType } from '@nestjs/cqrs';
-import {
-  EMPTY,
-  Observable,
-  filter,
-  first,
-  map,
-  mergeMap,
-  race,
-  timer,
-} from 'rxjs';
+import { EMPTY, Observable, filter, first, map, mergeMap, race, timer } from 'rxjs';
 import { AlarmAcknowledgedEvent } from '../../domain/events/alarm-acknowledged.event';
 import { AlarmCreatedEvent } from '../../domain/events/alarm-created.event';
 import { NotifyFacilitySupervisorCommand } from '../commands/notify-facility-supervisor.command';
@@ -24,16 +15,12 @@ export class UnacknowledgedAlarmsSaga {
     /**
      * A stream of alarm acknowledged events.
      */
-    const alarmAcknowledgedEvents$ = events$.pipe(
-      ofType(AlarmAcknowledgedEvent),
-    );
+    const alarmAcknowledgedEvents$ = events$.pipe(ofType(AlarmAcknowledgedEvent));
 
     /**
      * A stream of alarm created events.
      */
-    const alarmCreatedEvents$ = events$.pipe(
-      ofType(AlarmCreatedEvent),
-    );
+    const alarmCreatedEvents$ = events$.pipe(ofType(AlarmCreatedEvent));
 
     return alarmCreatedEvents$.pipe(
       // Wait for an alarm to be acknowledged or 10 seconds to pass
@@ -58,9 +45,7 @@ export class UnacknowledgedAlarmsSaga {
         );
 
         const facilityId = '12345'; // stub data since we don't have a proper command handler for this
-        return new NotifyFacilitySupervisorCommand(facilityId, [
-          alarmCreatedEvent.alarm.id,
-        ]);
+        return new NotifyFacilitySupervisorCommand(facilityId, [alarmCreatedEvent.alarm.id]);
       }),
     );
   };

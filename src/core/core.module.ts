@@ -11,11 +11,11 @@ import { EVENT_STORE_CONNECTION } from './core.constants';
       connectionName: EVENT_STORE_CONNECTION,
       directConnection: true, // connect to local replica set
     }),
-  ]
+  ],
 })
 export class CoreModule {
   static forRoot(options: ApplicationBootstrapOptions): DynamicModule {
-    let imports: DynamicModule['imports'] = []
+    let imports: DynamicModule['imports'] = [];
 
     if (options.driver === 'orm') {
       imports = [

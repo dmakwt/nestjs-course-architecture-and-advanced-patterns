@@ -18,12 +18,8 @@ export class MongoEventStore implements EventStore {
     private readonly eventDeserializer: EventDeserializer,
   ) {}
 
-  async persist(
-    eventOrEvents: SerializableEvent | SerializableEvent[],
-  ): Promise<void> {
-    const events = Array.isArray(eventOrEvents)
-      ? eventOrEvents
-      : [eventOrEvents];
+  async persist(eventOrEvents: SerializableEvent | SerializableEvent[]): Promise<void> {
+    const events = Array.isArray(eventOrEvents) ? eventOrEvents : [eventOrEvents];
 
     const session = await this.eventStore.startSession();
     try {
@@ -48,16 +44,12 @@ export class MongoEventStore implements EventStore {
   }
 
   async getEventsByStreamId(streamId: string): Promise<SerializableEvent[]> {
-    const events = await this.eventStore
-      .find({ streamId })
-      .sort({ position: 1 });
+    const events = await this.eventStore.find({ streamId }).sort({ position: 1 });
 
     if (events.length === 0) {
       throw new Error(`Aggregate with id ${streamId} does not exist`);
     }
 
-    return events.map((event) =>
-      this.eventDeserializer.deserialize(event.toJSON()),
-    );
+    return events.map((event) => this.eventDeserializer.deserialize(event.toJSON()));
   }
 }

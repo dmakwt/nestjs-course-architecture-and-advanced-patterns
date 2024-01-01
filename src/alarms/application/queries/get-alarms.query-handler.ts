@@ -4,9 +4,7 @@ import { FindAlarmsRepository } from '../ports/find-alarms.repository';
 import { GetAlarmsQuery } from './get-alarms.query';
 
 @QueryHandler(GetAlarmsQuery)
-export class GetAlarmsQueryHandler
-  implements IQueryHandler<GetAlarmsQuery, AlarmReadModel[]>
-{
+export class GetAlarmsQueryHandler implements IQueryHandler<GetAlarmsQuery, AlarmReadModel[]> {
   constructor(private readonly alarmRepository: FindAlarmsRepository) {}
 
   async execute(query: GetAlarmsQuery): Promise<AlarmReadModel[]> {

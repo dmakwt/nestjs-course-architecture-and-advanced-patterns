@@ -16,8 +16,7 @@ export class AggregateRehydrator {
   ): Promise<T> {
     const events = await this.eventStore.getEventsByStreamId(aggregateId);
 
-    const AggregateClsWithDispatcher =
-      this.eventPublisher.mergeClassContext(AggregateCls);
+    const AggregateClsWithDispatcher = this.eventPublisher.mergeClassContext(AggregateCls);
     const aggregate = new AggregateClsWithDispatcher(aggregateId);
 
     aggregate.loadFromHistory(events);

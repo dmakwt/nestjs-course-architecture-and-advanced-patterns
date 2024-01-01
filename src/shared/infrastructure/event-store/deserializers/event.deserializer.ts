@@ -21,10 +21,7 @@ export class EventDeserializer {
     return eventClass;
   }
 
-  instantiateSerializedEvent<T extends Type>(
-    eventCls: T,
-    data: Record<string, any>,
-  ) {
+  instantiateSerializedEvent<T extends Type>(eventCls: T, data: Record<string, any>) {
     return Object.assign(Object.create(eventCls.prototype), data);
   }
 }

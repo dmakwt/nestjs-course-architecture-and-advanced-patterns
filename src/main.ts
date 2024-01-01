@@ -6,7 +6,7 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(
     AppModule.register({
       driver: 'orm',
-    })
+    }),
   );
   await app.listen(process.env.PORT || 3000);
 }

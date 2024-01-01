@@ -5,9 +5,7 @@ import { MongoEventStore } from '../mongo-event-store';
 import { EventSerializer } from '../serializers/event.serializer';
 
 @Injectable()
-export class EventStorePublisher
-  implements OnApplicationBootstrap, IEventPublisher
-{
+export class EventStorePublisher implements OnApplicationBootstrap, IEventPublisher {
   constructor(
     private readonly eventStore: MongoEventStore,
     private readonly eventBus: EventBus,
@@ -18,18 +16,12 @@ export class EventStorePublisher
     this.eventBus.publisher = this;
   }
 
-  publish<T extends IEvent = IEvent>(
-    event: T,
-    dispatcher: VersionedAggregateRoot,
-  ) {
+  publish<T extends IEvent = IEvent>(event: T, dispatcher: VersionedAggregateRoot) {
     const serializableEvent = this.eventSerializer.serialize(event, dispatcher);
     return this.eventStore.persist(serializableEvent);
   }
 
-  publishAll<T extends IEvent = IEvent>(
-    events: T[],
-    dispatcher: VersionedAggregateRoot,
-  ) {
+  publishAll<T extends IEvent = IEvent>(events: T[], dispatcher: VersionedAggregateRoot) {
     const serializableEvents = events
       .map((event) => this.eventSerializer.serialize(event, dispatcher))
       .map((serializableEvent, index) => ({
